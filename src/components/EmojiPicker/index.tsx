@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { EmojiStyle } from "emoji-picker-react";
@@ -47,10 +52,10 @@ function EmojiViewer({ active, setInput }: EmojiPickerProps) {
           skinTonesDisabled
           previewConfig={{ showPreview: false }}
           onEmojiClick={(e) => {
-            let sym = e.unified.split("-");
-            let codesArray: any = [];
+            const sym = e.unified.split("-");
+            const codesArray: any = [];
             sym.forEach((el: any) => codesArray.push("0x" + el));
-            let emoji = String.fromCodePoint(...codesArray);
+            const emoji = String.fromCodePoint(...codesArray);
             setInput((value) => value + emoji);
           }}
         />
