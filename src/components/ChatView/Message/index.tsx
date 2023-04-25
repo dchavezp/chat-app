@@ -39,7 +39,7 @@ function Message({
         <div className="chat-bubble max-w-xs">
           <div>
             <span className="text-xs">You:</span>
-            <p>{messageText}</p>
+            <div className="block max-w-[240px] break-words">{messageText}</div>
             <span className="text-xs">{hourFormat(senderDate)}</span>
           </div>
         </div>
@@ -47,7 +47,7 @@ function Message({
     );
   return (
     <motion.div
-      className="flex flex-row items-end gap-2"
+      className="flex w-fit flex-row items-end gap-2"
       variants={item}
       initial={"hidden"}
       animate={"show"}
@@ -59,7 +59,7 @@ function Message({
             <strong className="text-xs text-accent xl:text-base">
               {senderUsername}
             </strong>
-            <p>{messageText}</p>
+            <div className="block max-w-[240px] break-words">{messageText}</div>
             <span className="text-xs">{hourFormat(senderDate)}</span>
           </div>
         </div>
