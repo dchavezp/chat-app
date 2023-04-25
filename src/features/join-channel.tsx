@@ -73,7 +73,7 @@ function JoinChannel() {
         onSubmit={handleSubmit}
         validationSchema={ValidationChannelSchema}
       >
-        <TextInput name="channelId" placeholder="Write the Channel Name" />
+        <TextInput name="channelId" placeholder="Write the Channel Id" />
 
         <AnimatePresence>
           {message !== "" ? <Alert type={status} message={message} /> : null}
