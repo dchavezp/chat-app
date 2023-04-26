@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { api } from "~/utils/api";
 import Message from "../Message";
 import useAuth from "~/hooks/useAuth";
@@ -19,6 +19,7 @@ function ChatContent({ channelId }: ChatContentProps) {
     { enabled: sessionData !== undefined }
   );
   const [listOfMessages, setMessages] = useState<typeof data>(data ?? []);
+  const bottomDiv = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (data) {
@@ -36,6 +37,10 @@ function ChatContent({ channelId }: ChatContentProps) {
       pusher.unsubscribe(channelId);
     };
   }, [channelId, data, refetch]);
+
+  useEffect(() => {
+    bottomDiv.current?.scrollIntoView();
+  });
   if (listOfMessages && listOfMessages.length !== 0)
     return (
       <motion.div
@@ -44,10 +49,13 @@ function ChatContent({ channelId }: ChatContentProps) {
           height: `calc(100vh - 144px)`,
         }}
       >
-        {listOfMessages.map((message) => {
+        <div ref={bottomDiv} />
+        {listOfMessages.map((message, index) => {
           return (
             <Message
               key={message.id}
+              id={message.id}
+              index={index}
               messageText={message.content}
               senderDate={message.createdAt}
               senderUsername={message.User?.name ?? ""}

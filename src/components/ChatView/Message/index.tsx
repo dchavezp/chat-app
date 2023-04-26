@@ -3,18 +3,22 @@ import Avatar from "~/components/Avatar";
 import { hourFormat } from "~/utils/formatDate";
 
 interface MessageProps {
+  id: string;
   senderImage: string;
   senderUsername: string;
   senderDate: Date;
   messageText: string;
   userLogged: string;
+  index: number;
 }
 function Message({
+  id,
   senderImage,
   senderDate,
   senderUsername,
   messageText,
   userLogged,
+  index,
 }: MessageProps) {
   const item = {
     hidden: { opacity: 0, x: -20 },
@@ -24,6 +28,7 @@ function Message({
       transition: {
         ease: "easeInOut",
         duration: 0.6,
+        delay: index * 0.1,
       },
     },
   };
@@ -35,6 +40,7 @@ function Message({
         variants={item}
         initial={"hidden"}
         animate={"show"}
+        layoutId={id}
       >
         <div className="chat-bubble max-w-xs">
           <div>
